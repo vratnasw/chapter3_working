@@ -1,0 +1,183 @@
+\begin{thebibliography}{23}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Alisic et~al.(2010)Alisic, Gurnis, Stadler, Burstedde, Wilcox, and
+  Ghattas]{GRL27564}
+L.~Alisic, M.~Gurnis, G.~Stadler, C.~Burstedde, L.~C. Wilcox, and O.~Ghattas.
+\newblock Slab stress and strain rate as constraints on global mantle flow.
+\newblock \emph{Geophysical Research Letters}, 37\penalty0 (22), 2010.
+\newblock ISSN 1944-8007.
+\newblock URL \url{http://dx.doi.org/10.1029/2010GL045312}.
+\newblock DOI: 10.1029/2010GL045312.
+
+\bibitem[Alisic et~al.(2012)Alisic, Gurnis, Stadler, Burstedde, and
+  Ghattas]{JGRB17312}
+L.~Alisic, M.~Gurnis, G.~Stadler, C.~Burstedde, and O.~Ghattas.
+\newblock Multi-scale dynamics and rheology of mantle flow with plates.
+\newblock \emph{Journal of Geophysical Research: Solid Earth}, 117\penalty0
+  (B10), 2012.
+\newblock ISSN 2156-2202.
+\newblock URL \url{http://dx.doi.org/10.1029/2012JB009234}.
+\newblock DOI: 10.1029/2012JB009234.
+
+\bibitem[Argus et~al.(2011)Argus, Gordon, and DeMets]{GGGE2060}
+D.~F. Argus, R.~G. Gordon, and C.~DeMets.
+\newblock Geologically current motion of 56 plates relative to the
+  no-net-rotation reference frame.
+\newblock \emph{Geochemistry, Geophysics, Geosystems}, 12\penalty0 (11), 2011.
+\newblock ISSN 1525-2027.
+\newblock URL \url{http://dx.doi.org/10.1029/2011GC003751}.
+\newblock DOI: 10.1029/2011GC003751.
+
+\bibitem[Billen and Hirth(2005)]{GRL20134}
+M.~I. Billen and G.~Hirth.
+\newblock Newtonian versus non-{N}ewtonian upper mantle viscosity:
+  {I}mplications for subduction initiation.
+\newblock \emph{Geophysical Research Letters}, 32\penalty0 (19), 2005.
+\newblock ISSN 1944-8007.
+\newblock URL \url{http://dx.doi.org/10.1029/2005GL023457}.
+\newblock DOI: 10.1029/2005GL023457.
+
+\bibitem[Billen and Hirth(2007)]{GGGE1076}
+M.~I. Billen and G.~Hirth.
+\newblock Rheologic controls on slab dynamics.
+\newblock \emph{Geochemistry, Geophysics, Geosystems}, 8\penalty0 (8), 2007.
+\newblock ISSN 1525-2027.
+\newblock URL \url{http://dx.doi.org/10.1029/2007GC001597}.
+\newblock DOI: 10.1029/2007GC001597.
+
+\bibitem[Billen and Gurnis(2001)]{billen2001low}
+Magali~I Billen and Michael Gurnis.
+\newblock A low viscosity wedge in subduction zones.
+\newblock \emph{Earth and Planetary Science Letters}, 193\penalty0
+  (1):\penalty0 227--236, 2001.
+
+\bibitem[Chapple and Tullis(1977)]{JGR13769}
+W.~M. Chapple and T.~E. Tullis.
+\newblock Evaluation of the forces that drive the plates.
+\newblock \emph{Journal of Geophysical Research}, 82\penalty0 (14):\penalty0
+  1967--1984, 1977.
+\newblock ISSN 2156-2202.
+\newblock URL \url{http://dx.doi.org/10.1029/JB082i014p01967}.
+\newblock 10.1029/JB082i014p01967.
+
+\bibitem[Conrad and Lithgow-Bertelloni(2002)]{Conrad04102002}
+C.~P. Conrad and C.~Lithgow-Bertelloni.
+\newblock How mantle slabs drive plate tectonics.
+\newblock \emph{Science}, 298\penalty0 (5591):\penalty0 207--209, 2002.
+\newblock URL \url{http://www.sciencemag.org/content/298/5591/207.abstract}.
+\newblock DOI: 10.1126/science.1074161.
+
+\bibitem[Crameri et~al.(2017)Crameri, Lithgow-Bertelloni, and
+  Tackley]{crameri2017dynamical}
+F~Crameri, CR~Lithgow-Bertelloni, and PJ~Tackley.
+\newblock The dynamical control of subduction parameters on surface topography.
+\newblock \emph{Geochemistry, Geophysics, Geosystems}, 2017.
+
+\bibitem[Flament et~al.(2013)Flament, Gurnis, and
+  M{\"u}ller]{flament2013review}
+Nicolas Flament, Michael Gurnis, and R~Dietmar M{\"u}ller.
+\newblock A review of observations and models of dynamic topography.
+\newblock \emph{Lithosphere}, 5\penalty0 (2):\penalty0 189--210, 2013.
+
+\bibitem[Forsyth and Uyeda(1975)]{Forsyth01101975}
+D.~Forsyth and S.~Uyeda.
+\newblock On the relative importance of the driving forces of plate motion.
+\newblock \emph{Geophysical Journal International}, 43\penalty0 (1):\penalty0
+  163--200, 1975.
+\newblock URL \url{http://gji.oxfordjournals.org/content/43/1/163.abstract}.
+\newblock DOI: 10.1111/j.1365-246X.1975.tb00631.x.
+
+\bibitem[Gripp and Gordon(1990)]{GRL4869}
+A.~E. Gripp and R.~G. Gordon.
+\newblock Current plate velocities relative to the hotspots incorporating the
+  nuvel-1 global plate motion model.
+\newblock \emph{Geophysical Research Letters}, 17\penalty0 (8):\penalty0
+  1109--1112, 1990.
+\newblock ISSN 1944-8007.
+\newblock URL \url{http://dx.doi.org/10.1029/GL017i008p01109}.
+\newblock DOI: 10.1029/GL017i008p01109.
+
+\bibitem[Hager et~al.(1984)Hager, Clayton, Richards, Comer, and
+  Dziewonski]{hager1984lower}
+Bradford~H Hager, Robert~W Clayton, Mark~A Richards, Robert~P Comer, and Adam~M
+  Dziewonski.
+\newblock Lower mantle heterogeneity, dynamic topography and the geoid.
+\newblock 1984.
+
+\bibitem[Karato and Wu(1993)]{karato1993rheology}
+S.~Karato and P.~Wu.
+\newblock Rheology of the upper mantle: A synthesis.
+\newblock \emph{Science}, 260\penalty0 (5109):\penalty0 771--778, 1993.
+
+\bibitem[Kaufmann and Lambeck(2000)]{kaufmann2000mantle}
+Georg Kaufmann and Kurt Lambeck.
+\newblock Mantle dynamics, postglacial rebound and the radial viscosity
+  profile.
+\newblock \emph{Physics of the Earth and Planetary Interiors}, 121\penalty0
+  (3):\penalty0 301--324, 2000.
+
+\bibitem[Kreemer et~al.(2003)Kreemer, Holt, and Haines]{kreemer2003integrated}
+Corn{\'e} Kreemer, William~E Holt, and A~John Haines.
+\newblock An integrated global model of present-day plate motions and plate
+  boundary deformation.
+\newblock \emph{Geophysical Journal International}, 154\penalty0 (1):\penalty0
+  8--34, 2003.
+
+\bibitem[Moresi and Gurnis(1996)]{moresi1996constraints}
+Louis Moresi and Michael Gurnis.
+\newblock Constraints on the lateral strength of slabs from three-dimensional
+  dynamic flow models.
+\newblock \emph{Earth and Planetary Science Letters}, 138\penalty0
+  (1-4):\penalty0 15--28, 1996.
+
+\bibitem[Ratnaswamy et~al.(2015)Ratnaswamy, Stadler, and
+  Gurnis]{ratnaswamy2015adjoint}
+Vishagan Ratnaswamy, Georg Stadler, and Michael Gurnis.
+\newblock Adjoint-based estimation of plate coupling in a non-linear mantle
+  flow model: theory and examples.
+\newblock \emph{Geophysical Journal International}, 202\penalty0 (2):\penalty0
+  768--786, 2015.
+
+\bibitem[Scholz and Campos(2012)]{scholz2012seismic}
+C.~H. Scholz and J.~Campos.
+\newblock The seismic coupling of subduction zones revisited.
+\newblock \emph{Journal of Geophysical Research: Solid Earth (1978--2012)},
+  117\penalty0 (B5), 2012.
+
+\bibitem[Stadler et~al.(2010)Stadler, Gurnis, Burstedde, Wilcox, Alisic, and
+  Ghattas]{Stadler27082010}
+G.~Stadler, M.~Gurnis, C.~Burstedde, L.~C. Wilcox, L.~Alisic, and O.~Ghattas.
+\newblock The dynamics of plate tectonics and mantle flow: From local to global
+  scales.
+\newblock \emph{Science}, 329\penalty0 (5995):\penalty0 1033--1038, 2010.
+\newblock URL \url{http://www.sciencemag.org/content/329/5995/1033.abstract}.
+\newblock DOI: 10.1126/science.1191223.
+
+\bibitem[Stocker and Ashby(1973)]{stocker1973rheology}
+R.~L. Stocker and M.~F. Ashby.
+\newblock On the rheology of the upper mantle.
+\newblock \emph{Reviews of Geophysics}, 11\penalty0 (2):\penalty0 391--426,
+  1973.
+
+\bibitem[Worthen et~al.(2014)Worthen, Stadler, Petra, Gurnis, and
+  Ghattas]{Worthen2014}
+J.~Worthen, G.~Stadler, N.~Petra, M.~Gurnis, and O.~Ghattas.
+\newblock Towards an adjoint-based inversion for rheological parameters in
+  nonlinear viscous mantle flow.
+\newblock \emph{Physics of Earth and Planetary Interiors}, 234:\penalty0
+  23--34, 2014.
+\newblock DOI: 10.1016/j.pepi.2014.06.006.
+
+\bibitem[Yang and Gurnis(2016)]{yang2016dynamic}
+Ting Yang and Michael Gurnis.
+\newblock Dynamic topography, gravity and the role of lateral viscosity
+  variations from inversion of global mantle flow.
+\newblock \emph{Geophysical Journal International}, 207\penalty0 (2):\penalty0
+  1186--1202, 2016.
+
+\end{thebibliography}

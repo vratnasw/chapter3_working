@@ -55,41 +55,47 @@
 \maketitle
 
 \begin{abstract}
-Constraining rheological parameters of the mantle is essential for not only estimating the broad-scale forces driving mantle flow, but also for estimating shear and normal stresses at plate boundaries. Inferring constitutive parameters requires minimizing a misfit between model output and observations, such as plate motions. However, as a constraint, plate velocities, sensitive to reference frames and an assumption of plate rigidity, are limiting and some form of surface deformation data needs to be incorporated into a misfit to better infer plate coupling. Dynamic topography, vertical deformation at the surface, such as oceanic trench topography, aids in partially overcoming this limitation. We formulate the cost function and derive the adjoint system with surface velocity and dynamic topography as joint constraints. We derive the adjoint forcing term with surface velocity and surface normal stress. We analyze the simple case of a sinking mass while inferring rheological parameters (layer prefactors, strain rate exponent and activation energy) and then discuss the advantages and limitations of the method in reference to subduction zones. 
+Constraining rheological parameters of the mantle is essential for not only estimating the broad-scale forces driving mantle flow, 
+but for estimating shear and normal stresses at plate boundaries. Inferring constitutive parameters requires minimizing a misfit between model output and observations, such as plate motions. However, as a constraint, plate velocities, sensitive to reference frames and an assumption of plate rigidity in the kinematic model data, 
+are limiting and some form of surface deformation data more localized at plate boundaries
+needs to be incorporated into a misfit to better infer plate coupling. Dynamic topography, vertical deformation at the surface, such as oceanic trench topography, aids in partially overcoming this limitation. We formulate the cost function and derive the adjoint system with surface velocity and dynamic topography as joint constraints. We derive the adjoint forcing term with surface velocity and surface normal stress. We analyze the simple case of a sinking mass while inferring rheological parameters (layer prefactors, strain rate exponent and activation energy) and then discuss the advantages and limitations of the method in reference to subduction zones. 
 
 \end{abstract}
 
 \section*{Introduction}
-  Slab pull is likely the primary force driving plate motions \citep{Forsyth01101975,JGR13769} and is estimated to account for approximately 70$\%$ of this force \citep{Conrad04102002}. An important target for models is reproducing the asymmetric motion at subduction zones, a phenomena which is particularly sensitive to rheology and coupling of plates to the surface. Without strong coupling of slabs to the subducting plate, convergence at subduction zones would be symmetrical \citep{Conrad04102002}. \mgnote{I'm not sure the point you are making about 'slab suction', rewrite next sentence:} While slab pull is the dominant force, ridge push can be consequential as it acts as a 'push force'. Key resisting forces include a bending subduction and plate motions include the bending of slabs when they first subduct and the frictional resistance from faults.  Slabs may act as stress-guides \citep{Stadler27082010}, allowing stresses to propagate from the lower mantle to the oceanic lithosphere; as stress guides slabs can both couple in additional resistance and driving to the plates. Nevertheless, the degree to which slabs are stronger compared to ambient mantle remains open. 
+  Slab pull is likely the primary force driving plate motions \citep{Forsyth01101975,JGR13769} and is estimated to account for approximately 70$\%$ of this force \citep{Conrad04102002}. An important target for models is reproducing the asymmetric motion at subduction zones, a phenomena which is particularly sensitive to rheology and coupling of plates to the surface. Without strong coupling of slabs to the subducting plate, convergence at subduction zones would be symmetrical \citep{Conrad04102002}. While slab pull is the dominant force, ridge push can also contribute to the balance as a 'push force'. Key resisting forces include a bending subduction and plate motions include the bending of slabs when they first subduct and the frictional resistance from faults.  Slabs may act as stress-guides \citep{Stadler27082010}, allowing stresses to propagate from the lower mantle to the oceanic lithosphere; as stress guides slabs can both couple in additional resistance and driving to the plates. Nevertheless, the degree to which slabs are stronger compared to ambient mantle remains open. 
   
 Accurately estimating broad-scale forces requires models that contain the salient physics in addition to the necessary resolution to resolve the fine scale features of mantle flow. The correct rheology would incorporate shear thinning due to dislocation creep in the upper mantle \citep{karato1993rheology} and dynamic weakening, which is controlled by the yield stress \citep{Stadler27082010, JGRB17312,GRL27564, GGGE1076,GRL20134}. Each of the rheological parameters (strain rate exponent, yield stress and plate coupling), plays a key role in the amount of viscous dissipation in the mantle. Viscous dissipation occurs as plates overcome the bending force and is also tied to slab strength (weak slabs promote less dissipation compared to strong slabs).
 
-In addition to a non-Newtonian rheology, thermal boundary layers, slabs and fault zones need to have the appropriate resolution. Properly resolving models needs requires either refining with a uniform mesh, which can be very costly, or using adaptive mesh refinement (AMR). Recently, with the use of adaptive mesh refinement (AMR), there have been spherical models that incorporate non-Newtonian rheology along with fine-scale resolution of fault zones and slabs \citep{Stadler27082010,JGRB17312} which can produce the complex motions of both large-scale and micro plates. 
+In addition to a non-Newtonian rheology, thermal boundary layers, slabs and fault zones need to well resolved. Properly resolved models requires either refining with a uniform mesh, which can be costly, or using adaptive mesh refinement (AMR). Recently, with the use of adaptive mesh refinement (AMR), there have been spherical models that incorporate non-Newtonian rheology along with fine-scale resolution of fault zones and slabs which can produce the complex motions of both large-scale and micro plates \citep{Stadler27082010,JGRB17312}. 
 
 While high-resolution models with reasonable rheologies are important to constraining broad-scale forces, they still fall short due to a mismatch in predicted plate motion and observed motion. To minimize the misfit between models and observations requires solving an optimization problem with plate motion data \citep{ratnaswamy2015adjoint} where the constitutive parameters are inferred. When using plate motion data, model parameters such as the plate couplings, strain rate exponent and yield stress, can be constrained in an optimization. However, there is a limit to the amount of information that can be gleaned from plate motions \citep{ratnaswamy2015adjoint} due to sensitivity between rheological parameters and plate motion. 
 
-Using plate motion data can give limits on mantle rheology since there is a first order relationship between plate motions and the rheology. However, plate motion data is not unique with regard to reference frames \citep{GRL4869,GGGE2060} and can potentially change the inference of parameters.  A caveat of using plate motion data is the assumption of rigid plates, that is there is no deformation (strain rate is negligible), which implies that plate motion data cannot be used near trenches since there is significant deformation there \citep{kreemer2003integrated}. Using plate motion data can potentially lead to  poorly constrained plate couplings \citep{ratnaswamy2015adjoint}.
+Using plate motion data can give limits on mantle rheology since there is a first order relationship between plate motions and the rheology. However, plate motion data is not unique with regard to reference frames \citep{GRL4869,GGGE2060} and can potentially change the inference of parameters.  A drawback of plate motion data is the assumption of rigid plates in the data model, that is there is no deformation (strain rate is negligible), which implies that plate motion data cannot be used near trenches since there is significant deformation there \citep{kreemer2003integrated}. Using plate motion data can potentially lead to  poorly constrained plate couplings \citep{ratnaswamy2015adjoint}.
 
 
 While plate motions fall short of fully constraining plate coupling, other observations such as dynamic topography, free-air gravity anomalies, and plate strain, might be useful.  Dynamic topography, a key manifestation of convection,
-is correlated with density anomalies such as plumes and slabs \citep{hager1985lower}, and at very long wavelengths, has an amplitude of about 1 km and positively correlates with the geoid, but is very wavelength dependent \citep{flament2013review}. Using dynamic topography as a constraint, studies have focus on minimizing the misfit between dynamic topography predictions and it's observational conterpart, residual topography \citep{yang2016dynamic}. 
+is driven by density anomalies such as mantle plumes and slabs \citep{hager1985lower}, and at very long wavelengths, has an amplitude of about 1 km and positively correlates with the geoid. Using dynamic topography as a constraint, studies have focus on minimizing the misfit between dynamic topography predictions and it's observational conterpart, residual topography \citep{yang2016dynamic}. 
 
-Both the correct density distribution (of slabs) and the effective viscosity structure are both essential to constrain plate coupling factors. Consequently, the incorporation of both radial and lateral variations in viscosity is necessary  reproccurately predict the dynamic topography \citep{moresi1996constraints,kaufmann2000mantle}. 
+Both the correct density distribution (of slabs) and the effective viscosity structure are both essential to constrain plate coupling factors. Consequently, the incorporation of both radial and lateral variations in viscosity is necessary  to accurately predict the dynamic topography \citep{moresi1996constraints,kaufmann2000mantle}. 
 %While the lateral variations in viscosity are important, the radial distribution of the effective viscosity is just as important due to the 30-100x increase in viscosity from the upper to lower mantle that provides a good fit to the geoid \citep{kaufmann2000mantle}
-\mgnote{Rewrite the next sentance and turn it into a possitive statement aboat shear thining, byt saying that 'shear thinning also effects the...' and then add a reference}There have been studies to constrain the short-wavelength signal at subduction zones and have done so by using a weak mantle wedge \citep{billen2001low}. Another way to have a weak upper mantle is to have shear thinning, where the the strain rate exponent controls how weak the (upper) mantle is \citep{karato1993rheology}; however, there have not been many studies using nonlinear, (well-resolved), models to constrain the dynamic topography. Recently, there have been advances in numerical solutions that incorporate rheology with the salient physics and they are able to produce they dynamic weakening at hinge zones and shear thinning in the upper mantle. However, with the correct physics, the mantle properties have not been constrained \citep{Stadler27082010,JGRB17312} which leads to data misfit in both plate motions and dynamic topography.
+There have been studies to constrain the short-wavelength signal at subduction zones and have done so by using a weak mantle wedge \citep{billen2001low}. 
+Shear-thinning, through the strain-rate exponent, is an important control on upper mantle viscosity \citep{karato1993rheology}
+There have not been many studies using nonlinear, (well-resolved), models to constrain the dynamic topography. Recently, there have been advances in numerical solutions that incorporate rheology with the salient physics and they are able to produce dynamic weakening at hinge zones and shear thinning in the upper mantle. However, with the correct physics, the mantle properties have not been constrained \citep{Stadler27082010,JGRB17312} which leads to data misfit in both plate motions and dynamic topography.
 
-	Strides have been made to methods meant to constrain mantle rheology using data in an optimization framework \citep{Worthen2014,ratnaswamy2015adjoint} to recover the rheological parameters. \mgnote{Is this next sentence really true. Please send me an e-mail showing the figure in your GRI paper which leads to this conclusion}Plate motion helps to strongly constrain the rheology such as the strain rate exponent and yield stress; however, there is a limit as to how well the coupling between plates can be constrained \citep{ratnaswamy2015adjoint}. Therefore, the incorporation of dynamic topography is an important constraint as it better reflects the surface deformation at trenches than plate motion. Constraining plate coupling with higher fidelity is important as these estimates can contribute to a better understanding of coupling and where great earthquakes occur \citep{scholz2012seismic}
-\mgnote{Isn't this the real reason for using this data? The logic in next senetance needs to be tightened up}%Therefore, dynamic topography data is important because it gives a stronger local constraint on the deforming region at trenches unlike plate motions which can only inform rigid areas.  
+	Strides have been made to methods meant to constrain mantle rheology using data in an optimization framework \citep{Worthen2014,ratnaswamy2015adjoint} to recover the rheological parameters. 
+Plate motion helps to strongly constrain the rheology such as the strain rate exponent and yield stress; however, there is a limit as to how well the coupling between plates can be constrained \citep{ratnaswamy2015adjoint}. Therefore, the incorporation of dynamic topography is an important constraint as it could better reflect the surface deformation at trenches than plate motion. Constraining plate coupling with higher fidelity is important as these estimates can contribute to a better understanding of coupling and where great earthquakes occur \citep{scholz2012seismic}.
+%Therefore, dynamic topography data is important because it gives a stronger local constraint on the deforming region at trenches unlike plate motions which can only inform rigid areas.  
 %Better estimates of plate coupling which can contribute to a better understanding of coupling and where great earthquakes occur \citep{scholz2012seismic}. %Instead of constraining dynamic topography, surface normal stress can be used as a proxy since dynamic topography is proportional to the surface  normal stress.
 
-In this chapter, we will derive the adjoint system with plate velocities and surface normal stress data. We will implement this new adjoint systems for a simple test case of a sinking mass anomaly where there is a smooth surface normal stress signal. We will present examples of the recovery of the strain rate exponent,pre-exponent to the constitutive relation and activation energy. We will show that the gradients for this new adjoint formulation are consistent and can thus be used for consistent plate coupling inferences.  Lastly, we will present the current limitation of applying this method to realistic subduction zone models. 
+In this chapter, we will derive the adjoint system with plate velocities and surface normal stress data. We will implement this new adjoint systems for a simple test case of a sinking mass anomaly where there is a smooth surface normal stress signal. We will present examples of the recovery of the strain rate exponent, pre-exponent to the constitutive relation and activation energy. We will show that the gradients for this new adjoint formulation are consistent and can thus be used for consistent plate coupling inferences.  Lastly, we discuss potential limitations of applying this method to realistic subduction zone models. 
 
 
 \section*{Forward Model}
 %Instead of using only plate motion data, we will incoporate surface normal stress. To do this, we first will introduce the cost function of the surface normal stress and then derive the adjoint forcing term. Furthermore, we will derive the Hessian for updating the inferred parameters.
 
 We model mantle flow with the infinite Prandtl-number Boussinesq
-approximation, which leads to the following non-dimensional Stokes
+approximation using the following non-dimensional Stokes
 equations:
 
 \begin{subequations}    \label{eq:stokes}
@@ -103,7 +109,6 @@ equations:
   \end{alignat}
 \end{subequations} 
 where $\Omega$ is the mantle domain,
-
 $\ssigma = 2\eta\strain(\uu) - p\textbf{I}$ is the stress tensor
 % \gsnote{Vish, why are we using indices for
 %  the stress and not for the strain? Should the strain also be bold as
@@ -113,13 +118,14 @@ $\ssigma = 2\eta\strain(\uu) - p\textbf{I}$ is the stress tensor
  with the viscosity $\eta=\eta(\IIinv, \Gamma, T,
 \sigma_y)$, which depends on the velocity $\uu$ (through the
 second invariant of the strain tensor $\IIinv$ defined below), on
-multiplicative factor $\Gamma$ modelling plate boundaries, however, studies in this chapter will not include plate boundaries, \mgnote{but in this Chapter you don't have plate boundaries},
- the temperature $T$ and on
+multiplicative factor $\Gamma$,
+%modelling plate boundaries, however, studies in this chapter will not include plate boundaries
+the temperature $T$ and on
 the yield stress $\sigma_y$, (a global quantity). Moreover,
 $\strain(\uu):=\frac{1}{2} (\nabla \uu + \nabla
 \uu^T)$ is the strain rate tensor, $p$ is the pressure and
 \textbf{I} the identity tensor. The flow is driven by
-\eqref{eq:stokes} are driven by thermal buoyancy. Here,
+by thermal buoyancy. Here,
 $\text{Ra}=\frac{\rho g \alpha \Delta T D^3}{\kappa
   \eta_{\text{ref}}}$ is the thermal Rayleigh number,
 %, which is
@@ -165,7 +171,7 @@ by multiplying \eqref{eq:stokes1} and \eqref{eq:incompress} by
 functions $\vv$ and $q$, respectively, that are 
 sufficiently smooth and satisfy the equivalent Dirichlet boundary
 condition, $\vv\cdot\textbf{n}=0$.
-\mgnote{Next sentence seems to have a problem, instead of 'and' do you mean 'with'.}Using integration by parts with boundary conditions
+Using integration by parts with boundary conditions
 \eqref{bc}, this results in
 \begin{multline}
 \label{eq:weakStokes}
@@ -185,13 +191,12 @@ dislocation creep can play a
 role depending on the state of stress and the strain rate, we have found
 that dislocation creep dominates within the plates and slabs and
 is the deformation mechanism which likely controls plate motions. Thus,
-underlying our models is a temperature-dependent shear-thinning
+underlying our models is a temperature-dependent, shear-thinning
 rheology,
 \begin{equation*}
   \tilde\eta(\IIinv,T)=\Gamma a(T)\IIinv^{\frac{1-n}{2n}}, \text{ with }
   \Gamma(x) = 1 - \sum_i(1 - \Gamma_i)\chi_i(x),
 \end{equation*}
-
 where $a(T):=\text{A}_{\text{rad}}\exp(\beta(0.5-T))$. 
 
 %and $\chi_i(\cdot)$
@@ -212,9 +217,11 @@ where $a(T):=\text{A}_{\text{rad}}\exp(\beta(0.5-T))$.
 
 
 An important aspect of mantle rheology is dynamic weakening, that is we do not have yielding in these models due to the exclusion of slabs.
-through shear thinning, in particular near hinge zones. Thus, 
+%through shear thinning, in particular near hinge zones. 
+Thus, 
 we use a rheology that involves
-plastic yielding in addition to polynomial shear thinning. For
+plastic yielding in addition to polynomial shear thinning. 
+\mgnote{This is awkward because which computational reasons is ambiguous at this point}For
 computational reasons we also
 incorporate lower and upper viscosity bounds
 $0 < \eta_{\min} < \eta_{\max}$ in the rheology, such that the effective viscosity is
@@ -228,18 +235,21 @@ $0 < \eta_{\min} < \eta_{\max}$ in the rheology, such that the effective viscosi
 \eqref{eq:eff_visc} for the effective viscosity corresponds to first
 applying the upper viscosity bound to the temperature and strain rate
 dependent viscosity. This is followed by multiplication by
-$\Gamma(x)$, a function describing plate boundaries through low viscosity
+$\Gamma(x)$, a function describing \mgnote{There are no plate boundaries; this needs to be rewritten to describe hwat you have actually done}plate boundaries through low viscosity
 zones. Finally, the plastic yielding condition is imposed. Adding
 $\eta_{\min}$ enforces a lower bound on the viscosity, as well as a
 one-to-one correspondence between strain rate and stress in the case
 of plastic yielding.
-In \eqref{eq:eff_visc}, we use a shift $d\ge 0$ to ensure that $\eta_{\max}$ is incorporated
-in a way that the viscosity is continuously differentiable with
+In \eqref{eq:eff_visc}, we use a shift $d\ge 0$ to ensure 
+%that $\eta_{\max}$ is incorporated
+%in a way 
+that the viscosity is continuously differentiable with
 respect to $\IIinv$, and thus also with
 respect to the velocity.  
 
 
-An outcome of mantle flow models is surface normal stress ($\ssigma_{rr}$), or dynamic topography at trenches. We obtain the dynamic topography from the solution of ~\eqref{eq:stokes} as a post-processing step in \eqref{eq:residual_topog},
+An outcome of mantle flow models is surface normal stress ($\ssigma_{rr}$), or dynamic topography. 
+We obtain the dynamic topography from the solution of ~\eqref{eq:stokes} as a post-processing step in \eqref{eq:residual_topog},
 \begin{equation}
 h= \frac{\ssigma_{rr}}{\rho g}
 \label{eq:residual_topog}
@@ -279,9 +289,10 @@ Our data misfit function will now include both plate velocities and surface norm
    &+ \frac{1}{2}\int_{\partial\Omega_2} (\mathcal{O}\ssigma_n-\ssigma_{\text{obs}})^T\mathcal{C}^{-1}_{stress}(\mathcal{O}\ssigma -\ssigma_{\text{obs}})d\partial\Omega_2 \\ 
 \end{split}
 \end{equation}
-where first term on the right hand side is the surface velocities misfit as previously used in \citep{ratnaswamy2015adjoint}. The cost function for the second term on the right hand side is for surface normal stress with $\ssigma_n = \textbf{n}(\ssigma \textbf{n})$ being the normal stress, and $\mathcal{O}$ is the observation operator ($\mathcal{O}$ retrieves the model observations at physical points in space). For our test problems, $\mathcal{O}$ is the same for \uu and $\sigma_{rr}$; however, this is not necessarily the case for geophysical problems, as they could be different.
+where the first term on the right hand side is the surface velocities misfit as previously used in \citep{ratnaswamy2015adjoint}. 
+The cost function for the second term on the right hand side is for surface normal stress with $\ssigma_n = \textbf{n}(\ssigma \textbf{n})$ being the normal stress, and $\mathcal{O}$ is the observation operator ($\mathcal{O}$ retrieves the model observations at physical points in space). For our test problems, $\mathcal{O}$ is the same for $\uu$ and $\sigma_{rr}$; however, this is not necessarily the case for geophysical problems, as they could be different.
  
- We have shown that constraining plate motion can give a strong constraint on the rheological properties of the mantles such as the strain rate exponent, yield stress and plate couplings. However, the surface normal stress at trenches might provide refined estimates as velocity data was not included in the deforming regions near the trench. To constrain the rheological parameters, we first
+\mgnote{Heavi;y repeats what was in the first part of paper. Please condense} We have shown that constraining plate motion can give a strong constraint on the rheological properties of the mantles such as the strain rate exponent, yield stress and plate couplings. However, the surface normal stress at trenches might provide refined estimates as velocity data was not included in the deforming regions near the trench. To constrain the rheological parameters, we first
 solve for the maximum a posteriori point (MAP) by solving the PDE-constrained optimization problem,
 \begin{equation}
 \underset{\mm}{\min} \mathcal{J}(\uu,\mm, p)
@@ -348,7 +359,7 @@ Incorporating surface normal stress into the adjoint formulation requires taking
 \begin{equation}
 \frac{\partial \mathcal{J}_{\ssigma}}{\partial (\uu,p)}=\mathcal{O}^T\frac{\partial \ssigma_n}{\partial (\uu,p)}(\mathcal{O}\ssigma_n-\ssigma_{obs})
 \end{equation}
-The gradient of ~\eqref{eq:topog_cost} w.r.t. \uu in a direction $\tilde{\uu}$  is,
+The gradient of ~\eqref{eq:topog_cost} with respect to \mgnote{I'm putting dollar signs around the next symbol becuase it is havinmg problem with the space with the next character} $\uu$ in a direction $\tilde{\uu}$  is,
 \begin{equation}
 \begin{split}
 \frac{\partial \mathcal{J}_{\ssigma}}{\partial \uu}\tilde{\uu} &= 2[\eta\strain(\tilde{\uu})+\frac{\partial\eta}{\partial\uu}\strain(\uu)\tilde{\uu}] \\
@@ -357,7 +368,7 @@ The gradient of ~\eqref{eq:topog_cost} w.r.t. \uu in a direction $\tilde{\uu}$  
       \strain(\uu)]\Big)\strain(\tilde{\uu})\\
 \end{split}
 \end{equation}
-while the gradient of ~\eqref{eq:topog_cost} w.r.t. the forward pressure (p) in the direction $\tilde{p}$ is,
+while the gradient of ~\eqref{eq:topog_cost} with respect to the forward pressure (p) in the direction $\tilde{p}$ is,
 \begin{equation}
 \frac{\partial \mathcal{J}_{\ssigma}}{\partial p}(\tilde{p}) = -\tilde{p}\textbf{I}
 \end{equation}
@@ -442,7 +453,7 @@ where $\eta_{,i}(\IIinv, n,\Gamma, \sigma_y)$ is given in ~\eqref{eq:gamma} to  
 \end{equation}
 
 %\section*{Hessian of Misfit}
-Previously, we computed the Gauss-Newton version of the Hessian of the misfit. We will formally derive the Hessian system, which involves taking the second order variations with respect to the Lagrangian, using the surface velocities (plate motion data) and surface normal stresses \mgnote{But not normal stresses?}. The Hessian system is given,
+Previously, we computed the Gauss-Newton version of the Hessian of the misfit. We will formally derive the Hessian system, which involves taking the second order variations with respect to the Lagrangian, using the surface velocities (plate motion data) and surface normal stresses. The Hessian system is,
 
 \begin{equation}
 \mathcal{H} = 
@@ -454,7 +465,7 @@ Previously, we computed the Gauss-Newton version of the Hessian of the misfit. W
 \end{equation}
 
 
-To solve the incremental forward equations, we look at the third (last row). The first term is formally the adjoint operator. The strong form of the adjoint equatoin is 
+To solve the incremental forward equations, we look at the third row of the Hessian. The first term \mgnote{did you also mean to say 'of the Hessian'?} is formally the adjoint operator. The strong form of the adjoint equation is 
 
 \begin{equation}
 \begin{split}
@@ -462,7 +473,6 @@ To solve the incremental forward equations, we look at the third (last row). The
 \nabla \cdot \ssigma_u & = -\nabla \cdot \tau_u
 \end{split}
 \end{equation}
-
 The incremental adjoint equations is given by solving the first row of the Hessian,
 \begin{equation}
 \begin{split}
@@ -470,7 +480,6 @@ The incremental adjoint equations is given by solving the first row of the Hessi
 \nabla \cdot \ssigma_v & = -\nabla \cdot \Psi 
 \end{split}
 \end{equation}
-
 with BC's,
 \begin{equation}
 \begin{split}
@@ -478,7 +487,6 @@ with BC's,
 \textbf{T}\ssigma_\uu\textbf{n}&= -\mathcal O^T\mathcal C^{-1}_{\text{noise}}\mathcal O \tilde{u}-\textbf{T}(\Psi\textbf{n})
 \end{split}
 \end{equation}
-
 The action of the Hessian on a direction $\tilde{\mm}$ is
 \begin{equation}
 \mathcal H\tilde{\mm}= 2\eta_{,\i\i}[\strain(\uu)\strain(\vv) + \strain(\uu)\strain(\tilde{\vv}) + \strain(\tilde{\uu})\strain(\vv)]\tilde{\mm}
@@ -506,8 +514,11 @@ where $\omega_1 = \log((\IIinv-d)^{-\frac{1}{2n}})$ and $\omega_2 = \log((\IIinv
 
 
 \section*{Model Setup}
-We consider a simple system with a sinking thermal anomaly (Fig.\ref{fig:viscosity}A); with a forward solution of the equations, we find the surface velocity and normal stress along the top boundary (Fig.\ref{fig:viscosity}B). The predicted forward velocity and topography, with the addition of noise ($4 \%$) is used as "data" in the inverse method. \mgnote{You are creating an 'inverse crime' if you don't add noise. Adding noise to the data is free and you should do it.} 
-The forward and inverse models both use  temperature- and strain-dependent viscoity, however, it lacks dynamic weakening \mgnote{what do you mean by dynamic weakneng?}\vrnote{meant yielding} because we do not include plates idealized as thermal boundary layers. \mgnote{None of this material about trenches belongs in the model setup section. This could go into the discussion.}An advantage of not using a subduction zone model is the smoothness of the surface normal stress that is normally not present at the trenches. %Furthermore, we find that we have reasonable trench depths for a sinking mass anomaly.
+We consider a simple system with a lower temperature Gaussian anomaly (Fig.\ref{fig:viscosity}A). 
+With a forward solution of the equations, we find the surface velocity \mgnote{needs to be shown in Figure} and normal stress along the top boundary (Fig.\ref{fig:viscosity}B). The predicted forward velocity and topography, with the addition of noise ($4 \%$) is used as "data" in the inverse method.
+The forward and inverse models both use  temperature- and strain-dependent viscosity, but without yielding. 
+%An advantage of not using a subduction zone model is the smoothness of the surface normal stress that is normally not present at the trenches. %Furthermore, we find that we have reasonable trench depths for a sinking mass anomaly.
+\mgnote{There needs to be more discussion of the geometry, inparticular, the shape and location of thermal anomnaly, the weak layer, the size and wide of the weak layer and that $\gamma$ controls the weak layer}
 \begin{figure}[H]
 \centering
 \subfigure[]{
@@ -516,7 +527,7 @@ The forward and inverse models both use  temperature- and strain-dependent visco
 \subfigure[]{
   \includegraphics[height=70mm, width = 70mm]{topog_signal.pdf}
 }
-\caption{\mgnote{This Figure needs several different improvements. First, is that you need to use or master a graphics package in which the material can be presented professionally, that is with distorting the aspect ratio. Second, on the left-hand seid (a) You should show the temperature field as black contours ontop of the effective viscosity. On the right hand side you have two predictions, surface velocity and noral stress, but you only show normal stress. For the picture on the right your plotted quantity needs to come up to the edges. Do you add noise to any of your models? Why not? Also, are there several forward models (In Table 1, you have different cases with different n and so you should plot they here, plotted with different line types or colors.}(a)Effective viscosity (b)Dynamic topography (km) with 4 $\%$ noise}.\mgnote{The Figure caption needs to be expnded to fully described what is in the figure precisely.}] 
+\caption{\mgnote{This Figure has more but continues to need improvement. First, is that you need to use or master a graphics package in which the material can be presented professionally, that is without distorting the aspect ratio. Second, on the left-hand side (a) You should show the temperature field as black contours ontop of the effective viscosity. On the right hand side you have two predictions, but only normal stress is shown. Either in this Figure or in an additional one, you need to show the velocity and normal stress is that obtained from the inverse model}(a) Effective viscosity (b)Dynamic topography (km) with 4 $\%$ noise}. 
 \label{fig:viscosity}
 \end{figure}
  
@@ -524,14 +535,15 @@ The forward and inverse models both use  temperature- and strain-dependent visco
 
 \mgnote{You need to have a whole paragraph which describes the numerical methods (finite elements) with description of shape fundations and solver. You need to describe the mesh. You need to describe ay software (Rhea). You need to describe any issues with the optimization} \vrnote{done}
 We will solve the forward problem using a finite element code that is highly scalable that makes  use of adaptive mesh refinement (AMR) \citep{rudi2015extreme}. Furthermore, we use Q2 elements for velocity while using first order discontinuous elements for pressure, to solve the Stokes flow problem.
+\\mgnote{This is still insufficient -- actual size of elements, number of elements, library names, criteria used in AMR (i.e. error indicators), tolerance on solvers...}
 
 
 \section*{Results}
-For the inversions, we investigate how well we can recover the parameters with a combination of surface normal stress data and surface velocity  shown in Table \ref{table:inversions}.\mgnote{When we first worked on this problem, you did different inverses, some with just velocity, some with just topography and some with both. They all need to be in there, because if you don't then I really don't see the purpose of any of this.}
+With our computational method, we investigate how well we can recover the parameters with a combination of surface normal stress data and surface velocity  (Table \ref{table:inversions}).
 \begin{sidewaystable}
 \centering
 	\begin{table}[H]
-		\caption{Case study summary for inversions for multiple parameters with different pieces of data used. Note \textit{T} means topography, while \textit{v} means velocity data used. \mgnote{Why are there no cases with more than one paramter left free and why is there only one case with multiple data types?}\vrnote{ran more cases to vary the data type and number of parameters}} % title of Table
+		\caption{Case study summary for inversions for multiple parameters with different pieces of data used. Note \textit{T} means topography, while \textit{v} means velocity data used. \mgnote{Thanks for running more cases. For those in which a variable is held fixed use Bold or underling to symbolize that fact and call this out here in the Caption. Use the same Style as in Chapter 4.}} % title of Table
 		\centering  % used for centering table
 		\begin{tabular}{c c c c c c} % centered columns (2 columns)
 		\hline \hline                        %inserts double horizontal lines
@@ -559,14 +571,15 @@ For the inversions, we investigate how well we can recover the parameters with a
 		\end{table}
 
 \end{sidewaystable}
+To test how well the new adjoint formulation of surface normal stress data works with respect to the recovery of the rheological parameters, we first focus on a single parameter, weak layer prefactor, strain rate exponent or activation energy. In Case 1, we infer the weakfactor of the top layer of the system, while keeping the other parameters fixed (strain rate exponent, yield stress and activation energy). We find that we are able to infer the correct weak layer prefactor within 2 iterations. 
+\mgnote{An addition case is needed that starts with a $\gamma$ larger than the actual value.}
+Furthermore, we test the independence of the initial guess to see if the inferred parameter is the same in Case 2. We find, similar to Case 1, that the recovered weak factor is $10^{-1}$, while the convergence to the true (synthetic value) is also 2 iterations (Fig.\ref{fig:topog_converge}a), 
+suggesting that the physics of the system prefers this weakfactor.
+\mgnote{I'm not sure what you mean. You need to be explicit}
 
-%\section*{Inversion for prefactor: Case Studies-Sinking Cylinder}
- %In this case, the viscosity is both temperature and velocity depdendent effectively making it a nonlinear system.
-
-\mgnote{Start with just one case and describe it in detail.}
-To test how well the new adjoint formulation of surface normal stress data works with respect to the recovery of the rheological parameters, we first focus on a single parameter, (weak layer prefactor, strain rate exponent). In Case 1, we infer the weakfactor of the top layer of the system, while keeping the other parameters fixed (strain rate exponent, yield stress and activation energy). We find that we are able to infer the correct weak layer prefactor within 2 iterations. Furthermore, we test the independence of the initial guess to see if the inferred parameter is the same in Case 2. We find, similar to Case 1, that the recovered weak factor is $10^{-1}$, while the convergence to the true (synthetic value) is also 2 iterations (Fig.\ref{fig:topog_converge}a), suggesting that the physics of the system prefers this weakfactor.
-
-We repeat similar case studies for the strain rate exponent, and activation energy. In Case 3, we keep the weak factor and activation energy fixed (effectively conditioning on the weak factor and activation energy), and find that we infer the correct strain rate exponent of 3.0 within 3 iterations, similar to the weafactor in Cases 1-2. Similarly, we test the independence of the initial guess of the strain rate exponent. We test two different guesses ($n=2.0,3.5$) that are smaller and larger than the initial guess of Case 3, and find in both Cases 4 and 5 that we can recover the true strain rate exponent within 3-4 iterations (Fig.\ref{fig:topog_converge}b), also suggesting that this particular model has a preferential amount of shear thinning needed to constrain the surface normal stress signal.
+We repeat similar case studies for the strain rate exponent, and activation energy. In Case 3, we keep the weak factor and activation energy fixed (effectively conditioning on the weak factor and activation energy), and find that we infer the correct strain rate exponent of 3.0 within 3 iterations, similar to the weafactor in Cases 1-2. Similarly, we test the independence of the initial guess of the strain rate exponent. We test two different guesses ($n=2.0,3.5$) that are smaller and larger than the initial guess of Case 3, and find in both Cases 4 and 5 that we can recover the true strain rate exponent within 3-4 iterations (Fig.\ref{fig:topog_converge}b), 
+also suggesting that this particular model has a preferential amount of shear thinning needed to constrain the surface normal stress signal.
+\mgnote{I don't know what this means . You need to be explicit.}
 
 A parameter that we have not investigated in \citep{ratnaswamy2015adjoint} was the activation energy, which controls the amount of temperature dependence in the effective viscosity. We similarly follows the similar approach as we did for the weak factor and strain rate exponent (Cases 1-5) and infer the activation energy (as well as the independence) of that initial guess. We find in Case 6 (only inferring the activation energy), that  we are able to infer the activation energy, regardless of the in initial guess (Case 7) within 4 iterations (Fig.\ref{fig:topog_converge}c). 
 
@@ -600,7 +613,7 @@ The decrease in convergence when attempting to infer more parameters lends to to
 %\hspace{-0.2cm}\subfigure[]{
 %\includegraphics[height=35mm,width=58mm]{um_chap4.pdf}%{mesh.pdf}
 %}
-\caption{(a)Cases 1 and 2 (inference for weakfactor with only normal stress data) (b)Cases 3-5 (inference for strain rate exponent with only normal stress data) (c) Cases 6 and 7 (inference for activation energy with only normal stress data) (d)Weakfactor comparison between cases 8 and 13 (e)Strain rate exponent comparison between cases 8 and 13 (f)Activation energy comparison between cases 8 and 13 }
+\caption{ \mgnote{This Figure looks messy and unprofessional. I think this is caused by your Figure in the upper left which has a smaller width than the others. Each Subfigure needs a letter label. The Fonts for the Labels needs to be larger}(a)  Cases 1 and 2 (inference for weakfactor with only normal stress data) (b)Cases 3-5 (inference for strain rate exponent with only normal stress data) (c) Cases 6 and 7 (inference for activation energy with only normal stress data) (d) Weakfactor comparison between cases 8 and 13 (e)Strain rate exponent comparison between cases 8 and 13 (f) Activation energy comparison between cases 8 and 13 }
 \label{fig:topog_converge}
 \end{figure}
 
@@ -617,7 +630,7 @@ The decrease in convergence when attempting to infer more parameters lends to to
 
 \section*{Discussion}
 
-\mgnote{I will help out with this section once you start responding to the models that I recommend below. The Bottom line is that I have not idea if adding more data (topography) in addition to surface velocity actually helps to improve or stabilize the inversions. The discussion seems rather pointless unless you addess this fundamental point.}
+\mgnote{This first figure just repeats what you presented in your results. Move beyond the superficial and explain why and what are the limitatitations, advantages, prospects, what has been done before. That is what discussion is.}
 We were able to infer various rheological parameters for the sinking mass anomaly using this new adjoint formulation. We show that in Cases 1-2, we can correctly infer the weak layer prefactor, (independent of the initial guess), within 3 iterations. We similarly find that we can infer the strain rate exponent (Cases 3-5) and activation energy (Cases 6-7) within 4-5 iterations, independent of the initial guess.  Furthermore, we demonstrate that using both surface velocity and surface normal stress can potentially accelerate the convergence of inversions as shown between Case 8 and 13.
 
  While we were able to implement and prove the validity of using the surface normal stress in the adjoint formulation, there still are issues in applying this method to subduction zones. One of these issues lies in the large variations in viscosity and the boundary conditions on the surface \citep{crameri2017dynamical}. The problem is that there are large dynamic topography near the trench that exceed 10km in forward models, which is certainly not found in the observations. Therefore, the adjoint formulation with surface normal stress will not work when no forward model is able to produce reasonable short wavelength topographic signals. 
